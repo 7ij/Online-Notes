@@ -1,3 +1,4 @@
+const checkAuth = require('./api/middleware/check-auth');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -10,6 +11,6 @@ app.use(bodyParser.json());
 
 app.use('/login', require('./api/routes/login'));
 app.use('/register', require('./api/routes/register'));
-app.use('/notes', require('./api/routes/notes'));
+app.use('/notes', checkAuth, require('./api/routes/notes'));
 
 module.exports = app;
